@@ -16,9 +16,14 @@ create a single main.cpp that contains code samples and implementations of each 
 #include <map>
 using namespace std; 
 
+//******Function prototype from Predicate Algorithm***
+ bool less_than_7(int);
+
+//*******From map::insert ***
 typedef map<string, int> MapT; //default constructor - creates an empty map opject
 typedef MapT::const_iterator MapIterT;//iterator to point to MapT
 
+//******Vectors as class members
 //Credit https://www.geeksforgeeks.org/passing-vector-constructor-c/ clarifications added
 class MyClassVector1 
 { 
@@ -278,14 +283,31 @@ cout << "\nMap Summary" << endl;
   
     /****Section_Name**** Sort_Algorithm*/
   cout << "\nSort Algorithm" << endl;
-  //sort the range between two iterators
+  //sort the range between two iterators in ascending order
   //iterators must be random access
   
+  int arr[100];//array of integers with 100 elements
+  sort(arr, arr + 100); //sort array from first to last element
+
+  
+  vector <int> v1;//added <int> to remove error because it required template arguments
+  sort(v1.begin(), v1.end());//sort vector from beginning to end
 
     /****Section_Name****Predicate_Algorithm*/
-    //Write the code as presented in: 25. count_if and predicate function
+    cout << "\nPredicate Algorithm" << endl;
+//a function returning a bool is a predicate
+//function def is below main()
+  vector <int> vpa;//vector declaration
+  //count_if(iterator1, iterator2, function)
+  //iterator 1 and 2 mark the range of elements and function argument is the address of the function that accepts an element as its argument returns true or false
+  int count_less = count_if(vpa.begin(), vpa.end(), less_than_7);
 
-   
-
+  
       return 0; 
  }
+
+//Function definition from Predicate Algorithm
+  bool less_than_7(int value) {
+    
+    return value < 7;
+    };
