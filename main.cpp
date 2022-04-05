@@ -238,19 +238,49 @@ cout << "\nVector_as_Class_Member3" << endl;
     /****Section_Name**** Map_Insert*/
   cout << "\nMap Insert" << endl;
   //a map is an associative container that holds unique pairs of keys and values
+  //each element is a combination of the key and mapped values - iterators access both at the same time
   //use <map> header
 
   MapT amap;
-  Pair
-
-
-
+  pair<MapIterT, bool> result = amap.insert(make_pair( "Fred", 45));
+//insert() inserts a pair object into the map
   
+  assert(result.second == true);
+  assert(result.first->second == 45);
+  result = amap.insert(make_pair("Fred", 54));
+  //Fred was already in the map and result.first simply points there now
+  assert(result.second == false);
+  assert(result.first->second == 45);
+
     /****Section_Name****Map_Summary*/
     //Write the code as presented in: 16. Map summary
-
+cout << "\nMap Summary" << endl;
+  map<string, string> phone_book;
+  phone_book["411"] = "Directory"; //411 is they key and Directory is the value
+  phone_book["911"] = "Emergency";
+  phone_book["508-678-2811"] = "BCC";
+  //find(key) searches for an element with a specific key. If found, the fuction returns an iterator to it.
+  //insert(pair) inserts a pair as an object to the map. If an element with the specified key already exists then it does nothing
+  if(phone_book.find("411") != phone_book.end()){
+    phone_book.insert(make_pair(string("411"), string("Directory")));
+  }
+  assert(phone_book.size() == 3); //size() returns the number of elements in the container
+  //use iterator to specify range (begining to end) and print the map (in alphabetical order)
+  map<string, string>::const_iterator mapIt;
+  for(mapIt = phone_book.begin(); mapIt != phone_book.end(); ++mapIt){
+    cout << " " << mapIt->first << " " << mapIt->second << endl;
+  }
+  //loop executes as long as the iterator does not point to the end of the map
+  //the update expression increments the iterator and moves it to the next element
+  //can be simplified with range based for loop
+  //prints key (first) and then value(second)
+  //accessed in order of keys
+  
     /****Section_Name**** Sort_Algorithm*/
-    //Write the code as presented in: 23. sort example
+  cout << "\nSort Algorithm" << endl;
+  //sort the range between two iterators
+  //iterators must be random access
+  
 
     /****Section_Name****Predicate_Algorithm*/
     //Write the code as presented in: 25. count_if and predicate function
